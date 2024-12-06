@@ -11,8 +11,8 @@ This project sets up an Avalanche node and CLI environment using Docker Compose.
 ### Getting Started
 ##### Clone the repository
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/MatthieuLvsr/docker-avalanche-cli.git
+cd docker-avalanche-cli
 ```
 ##### Build and Start the Services
 To start the Avalanche Node and CLI:
