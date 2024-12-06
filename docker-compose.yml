@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  avalanche-node:
+    image: avaplatform/avalanchego:latest
+    container_name: avalanche-node
+    restart: unless-stopped
+    ports:
+      - "9650:9650" # API port
+      - "9651:9651" # Peering port
+    volumes:
+      - ./config:/config # Local configuration
+      - ./data:/data # Blockchain data storage
+    command: >
+      /avalanchego/build/avalanchego
+      --http-host=0.0.0.0
+      --log-level=info
+    # --config-file=/config/node-config.json # if necessary
+
+
+  avalanche-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: avalanche-cli
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./cli-data:/root/.avalanche-cli
+    depends_on:
+      - avalanche-node
